@@ -1,3 +1,27 @@
 // Place all the styles related to the List controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.container-show {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .card-product {
+      width: 600px;
+    }
+    .card-product-infos {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      h2 {
+        color: black;
+      }
+      a {
+        color: darkgrey;
+        opacity: 0.5;
+      }
+      a:hover {
+        opacity: 1;
+        color: darkslategray;
+      }
+    }
+}

@@ -1,32 +1,31 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('cl_image_tag(denise-jans-mxhWy1td-BE-unsplash_syxvxp,
-      width: 400, height: 300, crop: :fill)');">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path "denise-jans-mxhWy1td-BE-unsplash.jpg" %>);">
   <div class="container">
     <h1>🎥 Cinéma 🎬</h1>
     <p>the watch list</p>
   </div>
 </div>
 
-<div><header></header></div>
-<h1>List of lists</h1>
+<div class="container-show">
+  <h1>List of lists</h1>
+  <%= link_to 'Create new list', new_list_path, class:"btn btn-outline-primary" %>
   <% @lists.each do |list| %>
     <%= link_to list_path(list) do%>
-      <% if list.photo.attached? %>
+      <%# if list.photo.attached? %>
         <div class="card-product">
-          <%= cl_image_tag list.photo.key, height: 300, width: 400, crop: :fill %>
+          <%= cl_image_tag list.photo.key, height: 300, width: 400, crop: :fill if list.photo.attached? %>
           <div class="card-product-infos">
-            <h2><%= list.name %></h2>
-            <%= link_to "Edit", edit_list_path(list), class:"fas fa-pencil-alt" %>
+            <div class="text"><h2><%= list.name %></h2></div>
+              <div class="action">
+                <%= link_to "", edit_list_path(list), class:"fas fa-pencil-alt" %>
+                <%= link_to "",
+                    list_path(list),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" },
+                    class:"far fa-trash-alt" %>
+              </div>
           </div>
         </div>
-      <% else %>
-        <div class="card-product">
-          <div class="card-product-infos">
-            <h2><%= list.name %></h2>
-            <%= link_to "Edit", edit_list_path(list), class:"fas fa-pencil-alt" %>
-          </div>
-        </div>
-      <% end %>
+
     <% end %>
   <% end %>
-
-<%= link_to 'Create new list', new_list_path, class:"btn btn-outline-primary" %>
+</div>
